@@ -1,0 +1,29 @@
+
+<app-dashboard [contactsList]="true" [contactDetail]="false"></app-dashboard>
+<section>
+    <div class="bg-light">hola</div>
+    <mat-list class="container-fluid" role="list">
+      <mat-list-item (click)="goToContactDetail(contact)" class="w-100 h-100" role="option" *ngFor="let contact of contactsList">
+        <div class="row w-100 p-4">
+          <div class="col-3">
+            <img *ngIf="contact.smallImageURL != null" (error) ="changeSource($event)" class="w-50 h-100" [src]="contact.smallImageURL" alt="">
+          </div>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-1">
+               <img *ngIf="!contact.isFavorite" src="assets\images\Favorite — False@3x.png" alt="">
+               <img *ngIf="contact.isFavorite" src="assets\images\Favorite — True@3x.png" alt="">
+              </div>
+              <div class="col-11">
+                <h1 class="mt-2">{{contact.name}}</h1>
+                <span class="text-dark">{{contact.companyName}}</span>
+              </div>
+            </div>
+          </div>
+          <mat-divider [inset]="true"></mat-divider>
+        </div>
+      </mat-list-item>
+    </mat-list>
+</section>
+
+

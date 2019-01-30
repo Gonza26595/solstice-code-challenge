@@ -1,0 +1,13 @@
+.mat-list-item:focus,
+.mat-list-item:hover,
+.mat-nav-list
+.mat-list-item:focus,
+.mat-nav-list
+.mat-list-item:hover {
+  background: rgba(0,0,0,.04);
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}

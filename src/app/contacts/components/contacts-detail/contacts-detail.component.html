@@ -1,0 +1,76 @@
+<app-dashboard [contactsList]="false" [contactDetail]="true" [isFavorite]="contact.isFavorite"></app-dashboard>
+<div class="container">
+  <div class=" text-center pt-5 mb-5">
+    <img *ngIf="contact != undefined" (error) ="changeSource($event)" [src]="contact.largeImageURL" alt="">
+    <h1 *ngIf="contact != undefined">{{contact.name}}</h1>
+    <span *ngIf="contact != undefined">{{contact.companyName}}</span>
+    <mat-divider class="mt-4"></mat-divider>
+  </div>
+  <div class="mt-5 mb-4">
+    <h5>PHONE:</h5>
+    <div class="mt-5 mb-4 row">
+      <div class="col-6">
+        <h4 *ngIf="contact != undefined">{{contact.homePhoneNumber}}</h4>
+      </div>
+      <div class="col-6">
+        <span class="float-right">Home</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div class="mt-5 mb-4">
+    <h5>PHONE:</h5>
+    <div class="mt-5 mb-4 row">
+      <div class="col-6">
+        <h4 *ngIf="contact != undefined">{{contact.mobilePhoneNumber}}</h4>
+      </div>
+      <div class="col-6">
+        <span class="float-right">Mobile</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div class=" mt-5 mb-4">
+    <h5>PHONE:</h5>
+    <div class="mt-5 mb-4 row">
+      <div class="col-6">
+        <h4 *ngIf="contact != undefined">{{contact.workPhoneNumber}}</h4>
+      </div>
+      <div class="col-6">
+        <span class="float-right">Work</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div class=" mt-5 mb-4">
+    <h5>ADDRESS:</h5>
+    <div class="mt-5 mb-4">
+      <div>
+        <h4 *ngIf="contact != undefined">{{contact.street}},
+            {{contact.city}},
+            {{contact.state}}
+            {{contact.zipCode}},
+            {{contact.country}}</h4>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div class=" mt-5 mb-4">
+    <h5>BIRTHDATE:</h5>
+    <div class="mt-5 mb-4">
+      <div>
+        <h4 *ngIf="contact != undefined">{{contact.birthdate}}</h4>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div class=" mt-5 mb-4">
+    <h5>EMAIL:</h5>
+    <div class="mt-5 mb-4">
+      <div>
+        <h4 *ngIf="contact != undefined">{{contact.emailAddress}}</h4>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</div>
