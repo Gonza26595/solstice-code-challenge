@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactsService } from '../../services/contacts.service';
-import { DataService } from '../../../shared/services/data.service';
 import { Router } from '../../../../../node_modules/@angular/router';
 import { Contact } from '../../classes/contact';
 
@@ -11,20 +10,20 @@ import { Contact } from '../../classes/contact';
 })
 export class ContactsListComponent implements OnInit {
 
-
   contactsList = new Array();
+  favoriteContactsList = new Array();
+  otherContactsList = new Array();
+  sessionStorageObject;
+  order = 'name'
 
   constructor(private _contactsService: ContactsService,
-              private _dataService:DataService,
               private _router:Router) { }
 
   ngOnInit() {
-    this._contactsService.getContactsList().subscribe(
-      data => {
-        console.log(data);
-        this.contactsList = data;
-      }
-    )
+
+    this.sessionStorageObject =JSON.parse(sessionStorage.getItem('contactsList'));
+    this.handleListVisualization();
+
   }
 
   changeSource(event) {
@@ -32,10 +31,31 @@ export class ContactsListComponent implements OnInit {
   }
 
 
-  goToContactDetail(contact:any){
-   this._dataService.passContactObjectInfo(contact);
-
-   this._router.navigate(["contacts/detail"])
+  public handleListVisualization(){
+   if(this.sessionStorageObject != null){
+     this.contactsList = this.sessionStorageObject;
+     this.checkForFavoriteOrOtherContacts(this.contactsList)
+   } else {
+    this._contactsService.getContactsList().subscribe(
+      contacts => {
+        this.contactsList = contacts;
+        this.checkForFavoriteOrOtherContacts(this.contactsList)
+      }
+    )
+   }
   }
+
+
+  public checkForFavoriteOrOtherContacts(contactsList){
+    for(let contact of contactsList){
+      if(!contact.isFavorite){
+        this.otherContactsList.push(contact);
+      } else {
+        this.favoriteContactsList.push(contact);
+      }      
+    }
+
+  }
+
 
 }

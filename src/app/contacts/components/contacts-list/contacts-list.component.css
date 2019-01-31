@@ -11,3 +11,7 @@
 a {
   text-decoration: none;
 }
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 104px;
+}

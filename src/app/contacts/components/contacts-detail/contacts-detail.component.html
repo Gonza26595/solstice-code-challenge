@@ -1,16 +1,24 @@
-<app-dashboard [contactsList]="false" [contactDetail]="true" [isFavorite]="contact.isFavorite"></app-dashboard>
+<mat-toolbar>
+  <div class="w-50 h-100 float-left">
+      <p style="cursor: pointer;" (click)="goBackToList()" class="text-center pt-4 text-primary font-weight-bold float-left ml-3 mt-3">Contacts</p>
+  </div>
+  <div *ngIf="contact != undefined" class="w-50 h-100 float-right">
+      <img (click)="changeToFavoriteTrue()" class="float-right mt-4" *ngIf="!contact.isFavorite" src="assets\images\Favorite — False@3x.png" alt="">
+      <img (click)="changeToFavoriteFalse()" class="float-right mt-4" *ngIf="contact.isFavorite" src="assets\images\Favorite — True@3x.png" alt="">
+  </div>
+</mat-toolbar>
 <div class="container">
   <div class=" text-center pt-5 mb-5">
     <img *ngIf="contact != undefined" (error) ="changeSource($event)" [src]="contact.largeImageURL" alt="">
-    <h1 *ngIf="contact != undefined">{{contact.name}}</h1>
-    <span *ngIf="contact != undefined">{{contact.companyName}}</span>
+    <h1 *ngIf="contact.name != null && contact.name !=''">{{contact.name}}</h1>
+    <span *ngIf="contact.companyName != null && contact.companyName != ''">{{contact.companyName}}</span>
     <mat-divider class="mt-4"></mat-divider>
   </div>
-  <div class="mt-5 mb-4">
+  <div   *ngIf="contact.homePhoneNumber != null && contact.homePhoneNumber != ''" class="mt-5 mb-4">
     <h5>PHONE:</h5>
     <div class="mt-5 mb-4 row">
       <div class="col-6">
-        <h4 *ngIf="contact != undefined">{{contact.homePhoneNumber}}</h4>
+        <h4 >{{contact.homePhoneNumber}}</h4>
       </div>
       <div class="col-6">
         <span class="float-right">Home</span>
@@ -18,11 +26,11 @@
     </div>
     <mat-divider></mat-divider>
   </div>
-  <div class="mt-5 mb-4">
+  <div  *ngIf="contact.mobilePhoneNumber != null && contact.mobilePhoneNumber != ''" class="mt-5 mb-4">
     <h5>PHONE:</h5>
     <div class="mt-5 mb-4 row">
       <div class="col-6">
-        <h4 *ngIf="contact != undefined">{{contact.mobilePhoneNumber}}</h4>
+        <h4>{{contact.mobilePhoneNumber}}</h4>
       </div>
       <div class="col-6">
         <span class="float-right">Mobile</span>
@@ -30,11 +38,11 @@
     </div>
     <mat-divider></mat-divider>
   </div>
-  <div class=" mt-5 mb-4">
+  <div *ngIf="contact.workPhoneNumber != null && contact.workPhoneNumber != ''" class=" mt-5 mb-4">
     <h5>PHONE:</h5>
     <div class="mt-5 mb-4 row">
       <div class="col-6">
-        <h4 *ngIf="contact != undefined">{{contact.workPhoneNumber}}</h4>
+        <h4>{{contact.workPhoneNumber}}</h4>
       </div>
       <div class="col-6">
         <span class="float-right">Work</span>
@@ -55,20 +63,20 @@
     </div>
     <mat-divider></mat-divider>
   </div>
-  <div class=" mt-5 mb-4">
+  <div *ngIf="contact.birthdate != null && contact.birthdate != ''" class=" mt-5 mb-4">
     <h5>BIRTHDATE:</h5>
     <div class="mt-5 mb-4">
       <div>
-        <h4 *ngIf="contact != undefined">{{contact.birthdate}}</h4>
+        <h4>{{contact.birthdate}}</h4>
       </div>
     </div>
     <mat-divider></mat-divider>
   </div>
-  <div class=" mt-5 mb-4">
+  <div *ngIf="contact.emailAddress != null && contact.emailAddress != ''" class=" mt-5 mb-4">
     <h5>EMAIL:</h5>
     <div class="mt-5 mb-4">
       <div>
-        <h4 *ngIf="contact != undefined">{{contact.emailAddress}}</h4>
+        <h4>{{contact.emailAddress}}</h4>
       </div>
     </div>
     <mat-divider></mat-divider>

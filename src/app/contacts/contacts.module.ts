@@ -10,6 +10,10 @@ import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { ContactsService } from './services/contacts.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { OrderModule } from 'ngx-order-pipe';
+
+
 
 @NgModule({
   imports: [
@@ -20,7 +24,9 @@ import { ContactsService } from './services/contacts.service';
     MatListModule,
     SharedModule,
     MatCardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    OrderModule
   ],
   declarations: [ContactsListComponent, ContactsDetailComponent],
   providers: [

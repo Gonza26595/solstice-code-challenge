@@ -20,11 +20,4 @@ export class ContactsService extends BaseService {
     )
   }
 
-
-  public getContactById(contactId:string): Observable<any> {
-    return super.getById(
-       SystemConfiguration.CONTACTS_LIST,
-       contactId
-    )
-  }
 }

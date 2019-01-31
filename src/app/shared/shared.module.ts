@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
@@ -8,7 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     CommonModule,
     MatToolbarModule
   ],
-  declarations: [DashboardComponent],
-  exports : [DashboardComponent]
+  declarations: [],
+  exports : []
 })
 export class SharedModule { }
