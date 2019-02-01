@@ -11,7 +11,7 @@
   </div>
 </mat-toolbar>
 
-<div class="container">
+<div *ngIf="contact != undefined" class="container">
 
   <div class=" text-center pt-5 mb-5">
     <img *ngIf="contact != undefined" class="w-50" (error)="onImageError($event)" [src]="contact.largeImageURL"

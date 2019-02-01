@@ -130,7 +130,6 @@ export class ContactsDetailComponent implements OnInit {
     for(let contact of this.contactsList){
       if(contact.id == contactId){
         this.createContactInstance(contact);
-        console.log(contact);
       }}}
 
 

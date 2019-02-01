@@ -1,6 +1,5 @@
 
 import { style, group, animate, transition, animateChild, trigger, query } from "@angular/animations";
-import { NG_TRIGGER_SELECTOR } from "@angular/animations/browser/src/util";
 
 export const slideInAnimation =
   trigger('routeAnimations', [
@@ -28,7 +27,7 @@ export const slideInAnimation =
       ]),
       query(':enter', animateChild()),
     ]),
-    transition('ContactsList <=> ContactDetail', [
+    transition('ContactDetail => ContactsList', [
       style({ position: 'relative' }),
       query(':enter, :leave', [
         style({
