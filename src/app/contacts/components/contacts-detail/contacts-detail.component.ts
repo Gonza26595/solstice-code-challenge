@@ -41,11 +41,11 @@ export class ContactsDetailComponent implements OnInit {
 
     }
 
-   
-    
+
+
     onImageError(event) {
       event.target.src = this.placeholderImageSrc;
-  
+
     }
 
 
@@ -96,7 +96,7 @@ export class ContactsDetailComponent implements OnInit {
     this.setFavoriteAndPlaceholderImagesBySize('1x')
     }
   }
-  
+
 
   public setFavoriteAndPlaceholderImagesBySize(size:string){
     if(size == '1x'){
@@ -134,14 +134,14 @@ export class ContactsDetailComponent implements OnInit {
 
 
   public changeToFavoriteFalse(){
-    this.contact.isFavorite = false;    
+    this.contact.isFavorite = false;
     this.saveContactFavoriteChangesOnList();}
 
   public changeToFavoriteTrue(){
     this.contact.isFavorite = true;
     this.saveContactFavoriteChangesOnList();}
 
-    
+
   public goBackToList(){this._location.back();}
 
 }
