@@ -8,9 +8,9 @@ import { ContactsDetailComponent } from './components/contacts-detail/contacts-d
 
 
   const routes: Routes = [
-   {path:'contacts',component: ContactsListComponent},
+   {path:'contacts',component: ContactsListComponent,   data: {animation: 'ContactsList'}},
    { path: '', redirectTo: '/contacts', pathMatch: 'full' },
-   {path:'contacts/:contactId', component:ContactsDetailComponent}
+   {path:'contacts/:contactId', component:ContactsDetailComponent,   data: {animation: 'ContactDetail'}}
   ]
 
 

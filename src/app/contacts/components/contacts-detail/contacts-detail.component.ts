@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ContactsService } from '../../services/contacts.service';
 import { ActivatedRoute } from '../../../../../node_modules/@angular/router';
 import { Contact } from '../../classes/contact';
@@ -14,13 +14,16 @@ export class ContactsDetailComponent implements OnInit {
   contactsList = new Array();
   contact:Contact;
   sessionStorageObject;
+  favoriteTrueImageSrc:string;
+  favoriteFalseImageSrc:string;
+  placeholderImageSrc:string;
 
   constructor(private _contactsService:ContactsService,
               private _activatedRoute:ActivatedRoute,
               private _location:Location) { }
 
   ngOnInit() {
-
+    window.scrollTo(0, 0);
     let contactId = this._activatedRoute.snapshot.paramMap.get("contactId");
     this.sessionStorageObject = JSON.parse(sessionStorage.getItem("contactsList"));
 
@@ -34,12 +37,16 @@ export class ContactsDetailComponent implements OnInit {
     })
     }
 
+   this.detectOnInitFavoriteStarAndPlaceholderSize();
 
     }
 
    
-
-  changeSource(event) {event.target.src = "assets/images/User Icon Small@3x.png"}
+    
+    onImageError(event) {
+      event.target.src = this.placeholderImageSrc;
+  
+    }
 
 
   public createContactInstance(contact:any):Contact{
@@ -68,9 +75,43 @@ export class ContactsDetailComponent implements OnInit {
   }
 
 
+  public detectOnInitFavoriteStarAndPlaceholderSize(){
+    if(window.matchMedia("(min-width: 850px)").matches){
+      this.setFavoriteAndPlaceholderImagesBySize('3x');
+    } else if (window.matchMedia("(min-width: 450px) and (max-width: 850px)").matches){
+      this.setFavoriteAndPlaceholderImagesBySize('2x');
+    } else {
+      this.setFavoriteAndPlaceholderImagesBySize('1x');
+    }
+  }
+
+
+  @HostListener('window:resize', ['$event'])
+  FavoriteStarAndPlaceholderImagesResize(event) {
+    if(event.target.innerWidth >= 850){
+     this.setFavoriteAndPlaceholderImagesBySize('3x');
+    } else if (event.target.innerWidth < 850 && event.target.innerWidth > 450){
+    this.setFavoriteAndPlaceholderImagesBySize('2x')
+    } else {
+    this.setFavoriteAndPlaceholderImagesBySize('1x')
+    }
+  }
   
-  public goBackToList(){
-    this._location.back();
+
+  public setFavoriteAndPlaceholderImagesBySize(size:string){
+    if(size == '1x'){
+      this.placeholderImageSrc = "assets/images/User — Large.png"
+      this.favoriteFalseImageSrc = "assets/images/Favorite — False.png"
+      this.favoriteTrueImageSrc = "assets/images/Favorite — True.png"
+    } else if (size == '2x'){
+      this.placeholderImageSrc = "assets/images/User — Large@2x.png"
+      this.favoriteFalseImageSrc = "assets/images/Favorite — False@2x.png"
+      this.favoriteTrueImageSrc = "assets/images/Favorite — True@2x.png"
+    } else if(size == '3x'){
+      this.placeholderImageSrc = "assets/images/User — Large@3x.png"
+      this.favoriteFalseImageSrc  = "assets/images/Favorite — False@3x.png"
+      this.favoriteTrueImageSrc = "assets/images/Favorite — True@3x.png"
+    }
   }
 
 
@@ -90,9 +131,7 @@ export class ContactsDetailComponent implements OnInit {
       if(contact.id == contactId){
         this.createContactInstance(contact);
         console.log(contact);
-      }
-    }
-  }
+      }}}
 
 
   public changeToFavoriteFalse(){
@@ -103,4 +142,8 @@ export class ContactsDetailComponent implements OnInit {
     this.contact.isFavorite = true;
     this.saveContactFavoriteChangesOnList();}
 
+    
+  public goBackToList(){this._location.back();}
+
 }
+

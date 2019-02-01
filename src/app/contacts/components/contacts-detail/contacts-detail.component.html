@@ -1,82 +1,90 @@
 <mat-toolbar>
-  <div class="w-50 h-100 float-left">
-      <p style="cursor: pointer;" (click)="goBackToList()" class="text-center pt-4 text-primary font-weight-bold float-left ml-3 mt-3">Contacts</p>
+  <div class="w-50 h-100 float-left position-relative">
+    <span (click)="goBackToList()" class="contacts-title position-absolute text-primary font-weight-bold">
+      <a>&lt;</a> Contacts</span>
   </div>
-  <div *ngIf="contact != undefined" class="w-50 h-100 float-right">
-      <img (click)="changeToFavoriteTrue()" class="float-right mt-4" *ngIf="!contact.isFavorite" src="assets\images\Favorite — False@3x.png" alt="">
-      <img (click)="changeToFavoriteFalse()" class="float-right mt-4" *ngIf="contact.isFavorite" src="assets\images\Favorite — True@3x.png" alt="">
+  <div *ngIf="contact != undefined" class="position-relative w-50 h-100 float-right">
+    <img (click)="changeToFavoriteTrue()" class="favorite-star mt-4 position-absolute" *ngIf="!contact.isFavorite" [src]="favoriteFalseImageSrc"
+      alt="">
+    <img (click)="changeToFavoriteFalse()" class="favorite-star mt-4 position-absolute" *ngIf="contact.isFavorite" [src]="favoriteTrueImageSrc"
+      alt="">
   </div>
 </mat-toolbar>
+
 <div class="container">
+
   <div class=" text-center pt-5 mb-5">
-    <img *ngIf="contact != undefined" (error) ="changeSource($event)" [src]="contact.largeImageURL" alt="">
-    <h1 *ngIf="contact.name != null && contact.name !=''">{{contact.name}}</h1>
-    <span *ngIf="contact.companyName != null && contact.companyName != ''">{{contact.companyName}}</span>
+    <img *ngIf="contact != undefined" class="w-50" (error)="onImageError($event)" [src]="contact.largeImageURL"
+      alt="">
+    <h1 id="contact-name" *ngIf="contact.name != null && contact.name !=''">{{contact.name}}</h1>
+    <span id="contact-company-name" *ngIf="contact.companyName != null && contact.companyName != ''">{{contact.companyName}}</span>
     <mat-divider class="mt-4"></mat-divider>
   </div>
-  <div   *ngIf="contact.homePhoneNumber != null && contact.homePhoneNumber != ''" class="mt-5 mb-4">
-    <h5>PHONE:</h5>
+
+  <div *ngIf="contact.homePhoneNumber != null && contact.homePhoneNumber != ''" class="mt-5 mb-4">
+    <h5 class="field-title">PHONE:</h5>
     <div class="mt-5 mb-4 row">
       <div class="col-6">
-        <h4 >{{contact.homePhoneNumber}}</h4>
+        <h4 class="field-content">{{contact.homePhoneNumber}}</h4>
       </div>
       <div class="col-6">
-        <span class="float-right">Home</span>
+        <span class="float-right phone-number">Home</span>
       </div>
     </div>
     <mat-divider></mat-divider>
   </div>
-  <div  *ngIf="contact.mobilePhoneNumber != null && contact.mobilePhoneNumber != ''" class="mt-5 mb-4">
-    <h5>PHONE:</h5>
+
+  <div *ngIf="contact.mobilePhoneNumber != null && contact.mobilePhoneNumber != ''" class="mt-5 mb-4">
+    <h5 class="field-title">PHONE:</h5>
     <div class="mt-5 mb-4 row">
       <div class="col-6">
-        <h4>{{contact.mobilePhoneNumber}}</h4>
+        <h4 class="field-content">{{contact.mobilePhoneNumber}}</h4>
       </div>
       <div class="col-6">
-        <span class="float-right">Mobile</span>
+        <span class="float-right phone-number">Mobile</span>
       </div>
     </div>
     <mat-divider></mat-divider>
   </div>
+
   <div *ngIf="contact.workPhoneNumber != null && contact.workPhoneNumber != ''" class=" mt-5 mb-4">
-    <h5>PHONE:</h5>
+    <h5 class="field-title">PHONE:</h5>
     <div class="mt-5 mb-4 row">
       <div class="col-6">
-        <h4>{{contact.workPhoneNumber}}</h4>
+        <h4 class="field-content">{{contact.workPhoneNumber}}</h4>
       </div>
       <div class="col-6">
-        <span class="float-right">Work</span>
+        <span class="float-right phone-number">Work</span>
       </div>
     </div>
     <mat-divider></mat-divider>
   </div>
+
   <div class=" mt-5 mb-4">
-    <h5>ADDRESS:</h5>
+    <h5 class="field-title">ADDRESS:</h5>
     <div class="mt-5 mb-4">
       <div>
-        <h4 *ngIf="contact != undefined">{{contact.street}},
-            {{contact.city}},
-            {{contact.state}}
-            {{contact.zipCode}},
-            {{contact.country}}</h4>
+        <h4 class="w-75 field-content" *ngIf="contact != undefined">{{contact.street}}, {{contact.city}}, {{contact.state}} {{contact.zipCode}}, {{contact.country}}
+        </h4>
       </div>
     </div>
     <mat-divider></mat-divider>
   </div>
   <div *ngIf="contact.birthdate != null && contact.birthdate != ''" class=" mt-5 mb-4">
-    <h5>BIRTHDATE:</h5>
+    <h5 class="field-title">BIRTHDATE:</h5>
     <div class="mt-5 mb-4">
       <div>
-        <h4>{{contact.birthdate}}</h4>
+        <h4 class="field-content">{{contact.birthdate}}</h4>
       </div>
     </div>
     <mat-divider></mat-divider>
   </div>
+
   <div *ngIf="contact.emailAddress != null && contact.emailAddress != ''" class=" mt-5 mb-4">
-    <h5>EMAIL:</h5>
+    <h5 class="field-title">EMAIL:</h5>
     <div class="mt-5 mb-4">
       <div>
-        <h4>{{contact.emailAddress}}</h4>
+        <h4 style="word-break: break-word" class="w-75 field-content">{{contact.emailAddress}}</h4>
       </div>
     </div>
     <mat-divider></mat-divider>

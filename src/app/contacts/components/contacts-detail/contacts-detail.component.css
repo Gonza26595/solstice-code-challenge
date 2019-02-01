@@ -1,3 +1,38 @@
 .mat-toolbar-row, .mat-toolbar-single-row {
-    height: 104px;
+    height: 16vmax;
   }
+
+.field-title, .phone-number {
+  color: #BDBDBD;
+  font-size: 2vmax;
+}
+
+.phone-number {
+  font-family: "Sarabun", sans-serif;
+}
+
+.field-content{
+  font-size: 3vmax;
+}
+
+.favorite-star{
+  right: 0px;
+  bottom: 15px;
+  cursor: pointer;
+}
+
+.contacts-title {
+  cursor: pointer;
+  left: 0px;
+  bottom: 8%;
+  font-size: 2.5vmax;
+}
+
+#contact-name{
+  font-size: 6.5vw;
+}
+
+#contact-company-name {
+  font-size: 3.5vw;
+    color: #BDBDBD;
+}

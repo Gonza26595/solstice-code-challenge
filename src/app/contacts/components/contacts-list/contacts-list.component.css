@@ -1,10 +1,4 @@
-.mat-list-item:focus,
-.mat-list-item:hover,
-.mat-nav-list
-.mat-list-item:focus,
-.mat-nav-list
-.mat-list-item:hover {
-  background: rgba(0,0,0,.04);
+.mat-list-item {
   cursor: pointer;
 }
 
@@ -13,5 +7,56 @@ a {
 }
 
 .mat-toolbar-row, .mat-toolbar-single-row {
-  height: 104px;
+  height: 16vmax;
+  background-color: #FAFAFA
 }
+
+
+#contacts-title{
+  font-size: 5.5vw;
+  font-family: 'Bitter', serif;
+  right: 0px;
+  left: 0px;
+  bottom: 15%;
+}
+
+.favorite-star{
+  font-size: 4.5vw;
+}
+
+.lists-titles {
+  background-color: #F2F2F2;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  font-size: 2vw;
+}
+
+.mat-divider {
+  position: relative!important;
+}
+
+.contacts-names{
+  font-family: "Sarabun", sans-serif;
+  font-size: 5vw;
+  word-break: break-word;
+}
+
+.contacts-company-names{
+  color: #BDBDBD;
+  font-size: 2.5vw;
+  word-break: break-word;
+}
+
+
+
+@media (min-width: 300px ) and (max-width:480px) {      
+  .list-item-content{
+    padding-top: 0!important;
+   
+  }
+  .mat-divider{
+    margin-top: 1rem!important;
+  }
+}
+
