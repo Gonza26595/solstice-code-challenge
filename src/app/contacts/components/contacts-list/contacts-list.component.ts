@@ -30,7 +30,7 @@ export class ContactsListComponent implements OnInit {
     this.detectOnInitPlaceholderImageSize();
   }
 
-  onImageError(event,placeholderImage) {
+  onImageError(event) {
     event.target.src = this.placeholderImageSrc;
   }
 
@@ -79,7 +79,7 @@ public detectOnInitPlaceholderImageSize(){
         this.otherContactsList.push(contact);
       } else {
         this.favoriteContactsList.push(contact);
-      }      
+      }
     }
 
   }
